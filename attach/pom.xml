@@ -45,8 +45,6 @@
 							<mainClass>se.hirt.examples.svc.attach.ListSystemProperties</mainClass>
 							<id>listSystemProperties</id>
 						</program>
-					</programs>
-					<programs>
 						<program>
 							<mainClass>se.hirt.examples.svc.attach.StartLocalAgent</mainClass>
 							<id>startLocalAgent</id>
