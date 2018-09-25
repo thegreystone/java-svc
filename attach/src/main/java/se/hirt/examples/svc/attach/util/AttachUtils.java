@@ -31,11 +31,8 @@
  */
 package se.hirt.examples.svc.attach.util;
 
-import java.lang.reflect.Method;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import sun.management.counter.perf.InstrumentationException;
 
 /**
  * Various utility functions.
@@ -46,16 +43,13 @@ import sun.management.counter.perf.InstrumentationException;
 public class AttachUtils {
 	private static final Logger LOGGER = Logger.getLogger("se.hirt.examples.svc.attach"); //$NON-NLS-1$
 	private static final boolean IS_LOCAL_ATTACH_AVAILABLE;
-	private static final Class<?> CONNECTOR_ADDRESS_LINK;
 
 	static {
 		boolean available;
-		Class<?> cal = null;
 		try {
 			Class.forName("com.sun.tools.attach.VirtualMachine"); //$NON-NLS-1$
 			Class.forName("sun.tools.attach.HotSpotVirtualMachine"); //$NON-NLS-1$
 			Class.forName("sun.jvmstat.monitor.MonitorException"); //$NON-NLS-1$
-			cal = lookupConnectorAddressLink();
 			available = true;
 		} catch (Throwable t) {
 			available = false;
@@ -63,7 +57,6 @@ public class AttachUtils {
 			System.exit(4711);
 		}
 		IS_LOCAL_ATTACH_AVAILABLE = available;
-		CONNECTOR_ADDRESS_LINK = cal;
 	}
 
 	/**
@@ -84,45 +77,14 @@ public class AttachUtils {
 		return args[0];
 	}
 
-
-	/**
-	 * Importing the JMXServiceURL connector address from another process.
-	 * 
-	 * @param pid
-	 *            the pid to import
-	 * @return
-	 */
-	public static String importFromPid(Integer pid) {
-		try {
-			Method importFrom = CONNECTOR_ADDRESS_LINK.getMethod("importFrom", int.class);
-			return (String) importFrom.invoke(null, pid);
-		} catch (NullPointerException e) {
-			// JVM possibly died during call
-		} catch (InstrumentationException e) {
-			// Connecting to a 1.4 Sun JVM.
-		} catch (Throwable t) {
-			LOGGER.log(Level.WARNING, "Could not get connector address for pid", t);
-		}
-		return null;
-	}
-
 	/**
 	 * @return if we have local attachment capabilities available.
 	 */
 	public static boolean isLocalAttachAvailable() {
 		return IS_LOCAL_ATTACH_AVAILABLE;
 	}
-
-	private static Class<?> lookupConnectorAddressLink() throws Throwable {
-		try {
-			return Class.forName("jdk.internal.agent.ConnectorAddressLink");
-		} catch (Throwable t) {
-			// Assuming because Java 7/8, try the equivalent old sun.management class...
-		}
-		return Class.forName("sun.management.ConnectorAddressLink");
-	}
 	
 	public static void printJVMVersion() {
-		System.out.println("JVM: " + Runtime.version());
+		System.out.println("JVM: " + System.getProperty("java.vm.version"));
 	}
 }

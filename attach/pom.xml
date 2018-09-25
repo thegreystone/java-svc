@@ -39,12 +39,17 @@
 				<artifactId>appassembler-maven-plugin</artifactId>
 				<version>2.0.0</version>
 				<configuration>
-					<extraJvmArguments>-Xms128m</extraJvmArguments>
 					<assembleDirectory>target</assembleDirectory>
 					<programs>
 						<program>
 							<mainClass>se.hirt.examples.svc.attach.ListSystemProperties</mainClass>
 							<id>listSystemProperties</id>
+						</program>
+					</programs>
+					<programs>
+						<program>
+							<mainClass>se.hirt.examples.svc.attach.StartLocalAgent</mainClass>
+							<id>startLocalAgent</id>
 						</program>
 					</programs>
 				</configuration>

@@ -39,23 +39,23 @@ import com.sun.tools.attach.VirtualMachine;
 import se.hirt.examples.svc.attach.util.AttachUtils;
 
 /**
- * Attaches to the JVM with the specified PID, and lists the system properties. Note that the Attach
- * API isn't a supported API. That said, most Java tools are utilizing it to some extent.
+ * Attaches to the JVM with the specified PID, and starts the local management agent. If successful,
+ * the JMXServiceURL that can be used to connect to the locally running JVM will be printed.
  * <p>
- * This example lists the system properties of the process.
+ * Note that a JMX connection will only be used if the process trying to connect is running as the
+ * same effective user as the process connecting to.
  * <p>
  * Note that this example does NOT require JMX. It does, however, require a JDK.
  * 
  * @author Marcus Hirt
  */
 @SuppressWarnings("restriction")
-public class ListSystemProperties {
-
+public class StartLocalAgent {
 	public static void main(String[] args) throws AttachNotSupportedException, IOException {
 		AttachUtils.printJVMVersion();
 		String pid = AttachUtils.checkPid(args);
 		VirtualMachine vm = VirtualMachine.attach(pid);
-		System.out.println(vm.getSystemProperties());
+		System.out.println(vm.startLocalManagementAgent());
 		vm.detach();
 	}
 }
