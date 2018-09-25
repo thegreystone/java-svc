@@ -54,5 +54,6 @@ public class ListSystemProperties {
 		String pid = AttachUtils.checkPid(args);
 		VirtualMachine vm = VirtualMachine.attach(pid);
 		System.out.println(vm.getSystemProperties());
+		vm.detach();
 	}
 }
