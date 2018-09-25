@@ -30,7 +30,6 @@
 			<version>0.1</version>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<finalName>svc-attach</finalName>
 		<plugins>
