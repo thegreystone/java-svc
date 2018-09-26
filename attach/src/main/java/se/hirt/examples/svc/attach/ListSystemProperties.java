@@ -49,7 +49,7 @@ import se.hirt.examples.svc.attach.util.AttachUtils;
  * @author Marcus Hirt
  */
 @SuppressWarnings("restriction")
-public class ListSystemProperties {
+public final class ListSystemProperties {
 
 	public static void main(String[] args) throws AttachNotSupportedException, IOException {
 		AttachUtils.printJVMVersion();

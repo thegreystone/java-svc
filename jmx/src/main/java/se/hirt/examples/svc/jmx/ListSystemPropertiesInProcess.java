@@ -29,33 +29,18 @@
  *
  * Copyright (C) Marcus Hirt, 2018
  */
-package se.hirt.examples.svc.attach;
+package se.hirt.examples.svc.jmx;
 
-import java.io.IOException;
-
-import com.sun.tools.attach.AttachNotSupportedException;
-import com.sun.tools.attach.VirtualMachine;
-
-import se.hirt.examples.svc.attach.util.AttachUtils;
+import java.lang.management.ManagementFactory;
 
 /**
- * Attaches to the JVM with the specified PID, and starts the local management agent. If successful,
- * the JMXServiceURL that can be used to connect to the locally running JVM will be printed.
- * <p>
- * Note that a JMX connection will only be used if the process trying to connect is running as the
- * same effective user as the process connecting to.
- * <p>
- * Note that this example does NOT require JMX. It does, however, require a JDK.
+ * Grabs the local management agent and prints the system properties retrieved (in process) over
+ * JMX.
  * 
  * @author Marcus Hirt
  */
-@SuppressWarnings("restriction")
-public final class StartLocalAgent {
-	public static void main(String[] args) throws AttachNotSupportedException, IOException {
-		AttachUtils.printJVMVersion();
-		String pid = AttachUtils.checkPid(args);
-		VirtualMachine vm = VirtualMachine.attach(pid);
-		System.out.println(vm.startLocalManagementAgent());
-		vm.detach();
+public class ListSystemPropertiesInProcess {
+	public static void main(String[] args) {
+		System.out.println(ManagementFactory.getRuntimeMXBean().getSystemProperties());
 	}
 }

@@ -29,33 +29,43 @@
  *
  * Copyright (C) Marcus Hirt, 2018
  */
-package se.hirt.examples.svc.attach;
+package se.hirt.examples.svc.jmx;
 
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
 
-import com.sun.tools.attach.AttachNotSupportedException;
-import com.sun.tools.attach.VirtualMachine;
+import javax.management.remote.JMXConnector;
+import javax.management.remote.JMXConnectorFactory;
 
+import com.sun.management.OperatingSystemMXBean;
+
+import se.hirt.examples.svc.attach.util.AttachException;
 import se.hirt.examples.svc.attach.util.AttachUtils;
 
 /**
  * Attaches to the JVM with the specified PID, and starts the local management agent. If successful,
- * the JMXServiceURL that can be used to connect to the locally running JVM will be printed.
+ * the JMXServiceURL will be used to connect to the locally running JVM, and the CPU load related
+ * information will be printed.
  * <p>
  * Note that a JMX connection will only be used if the process trying to connect is running as the
  * same effective user as the process connecting to.
  * <p>
- * Note that this example does NOT require JMX. It does, however, require a JDK.
+ * Note that we want more information than is in the standard implementation, therefore we are being
+ * nasty little hobbitses and rely on the HotSpot implementation rather than the specification. This
+ * could of course come back and haunt us in a later release...
  * 
  * @author Marcus Hirt
  */
 @SuppressWarnings("restriction")
-public final class StartLocalAgent {
-	public static void main(String[] args) throws AttachNotSupportedException, IOException {
+public class PrintCPULoad {
+	public static void main(String[] args) throws IOException, AttachException {
 		AttachUtils.printJVMVersion();
 		String pid = AttachUtils.checkPid(args);
-		VirtualMachine vm = VirtualMachine.attach(pid);
-		System.out.println(vm.startLocalManagementAgent());
-		vm.detach();
+		JMXConnector connector = JMXConnectorFactory.connect(AttachUtils.startLocalAgent(pid));
+		OperatingSystemMXBean osMXBean = ManagementFactory.newPlatformMXBeanProxy(connector.getMBeanServerConnection(),
+				ManagementFactory.OPERATING_SYSTEM_MXBEAN_NAME, OperatingSystemMXBean.class);
+		System.out.println("JVM process load: " + osMXBean.getProcessCpuLoad());
+		System.out.println("System load: " + osMXBean.getSystemCpuLoad());
+		System.out.println("Process cpu time: " + osMXBean.getProcessCpuTime() / 1000_000.0d + " ms");
 	}
 }

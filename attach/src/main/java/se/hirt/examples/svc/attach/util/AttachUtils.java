@@ -31,8 +31,11 @@
  */
 package se.hirt.examples.svc.attach.util;
 
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import com.sun.tools.attach.VirtualMachine;
+import javax.management.remote.JMXServiceURL;
 
 /**
  * Various utility functions.
@@ -40,7 +43,7 @@ import java.util.logging.Logger;
  * @author Marcus Hirt
  */
 @SuppressWarnings("restriction")
-public class AttachUtils {
+public final class AttachUtils {
 	private static final Logger LOGGER = Logger.getLogger("se.hirt.examples.svc.attach"); //$NON-NLS-1$
 	private static final boolean IS_LOCAL_ATTACH_AVAILABLE;
 
@@ -83,8 +86,39 @@ public class AttachUtils {
 	public static boolean isLocalAttachAvailable() {
 		return IS_LOCAL_ATTACH_AVAILABLE;
 	}
-	
+
 	public static void printJVMVersion() {
 		System.out.println("JVM: " + System.getProperty("java.vm.version"));
+	}
+
+	/**
+	 * Used by other examples in other modules to establish a JMX connection to a locally running
+	 * JVM. If the local agent is already started, the service URL will still be returned.
+	 * 
+	 * @param pid
+	 *            the process identifier of the process to start the local management agent on.
+	 * @return the {@link JMXServiceURL} to use when connecting to the local management agent.
+	 * @throws AttachException
+	 */
+	public static JMXServiceURL startLocalAgent(String pid) throws AttachException {
+		VirtualMachine vm = null;
+		try {
+			vm = VirtualMachine.attach(pid);
+			return new JMXServiceURL(vm.startLocalManagementAgent());
+		} catch (Throwable t) {
+			throw new AttachException("Failed to attach to " + pid, t);
+		} finally {
+			if (vm != null) {
+				detach(vm);
+			}
+		}
+	}
+
+	private static void detach(VirtualMachine vm) {
+		try {
+			vm.detach();
+		} catch (IOException e) {
+			LOGGER.log(Level.INFO, "Failed to detach from VM.", e);
+		}
 	}
 }
