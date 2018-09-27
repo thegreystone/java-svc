@@ -16,7 +16,7 @@ mvn clean package
 To run the example without the agent:
 
 ```bash
-java -cp target/svc-jplis-0.0.1-SNAPSHOT-tests.jar se.hirt.examples.svc.jplis.TestProgram
+java -cp target/svc-jplis-0.0.1-SNAPSHOT.jar:target/svc-jplis-0.0.1-SNAPSHOT-tests.jar se.hirt.examples.svc.jplis.TestProgram
 ```
 
 To run the example with the agent:
