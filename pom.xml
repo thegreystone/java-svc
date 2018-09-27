@@ -39,6 +39,7 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>attach</module>
+		<module>jdi</module>
 		<module>jmx</module>
 		<module>jplis</module>
 		<module>perfcounters</module>
