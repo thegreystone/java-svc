@@ -1,0 +1,5 @@
+Premain-Class: se.hirt.examples.svc.jplis.ExampleAgent 
+Agent-Class:  se.hirt.examples.svc.jplis.ExampleAgent 
+Can-Redefine-Classes: true
+Can-Retransform-Classes: true
+Can-Set-Native-Method-Prefix: false

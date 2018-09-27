@@ -40,6 +40,7 @@
 	<modules>
 		<module>attach</module>
 		<module>jmx</module>
+		<module>jplis</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

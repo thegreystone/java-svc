@@ -1,0 +1,6 @@
+# This is a list of things to measure.
+# Replace these methods with the ones you want to measure.
+# Format is <class>#<method><formal descriptor>
+se.hirt.examples.svc.jplis.TestProgram#doSomething(F)V
+se.hirt.examples.svc.jplis.TestProgram#doSomethingElse(Ljava/lang/String;)V
+se.hirt.examples.svc.jplis.TestProgram#returnSomething(J)J
