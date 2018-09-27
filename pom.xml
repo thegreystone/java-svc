@@ -41,6 +41,7 @@
 		<module>attach</module>
 		<module>jmx</module>
 		<module>jplis</module>
+		<module>perfcounters</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
