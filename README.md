@@ -1,5 +1,7 @@
 # java-svc
-This repository contains a set of small examples that can be used to demonstrate various popular Java serviceability technologies.
+This repository contains a set of small examples that can be used to demonstrate various popular Java serviceability technologies. The examples are focused on making it easy to getting going with the various serviceability technologies. 
+
+Note that there are already technology demonstrators for most technologies among the standard java demos. The demos in this repository, however, are focusing on making it easier to get started. The examples are easy to build and run, and they are easily digested. Everyone should dare experimenting with these, even relatively inexperienced developers. Not to mention that I needed examples that fit on a slide for a talk. ;)
 
 ## Prerequisites
 All projects can build with JDK11, and most will build on JDK 8 as well.
