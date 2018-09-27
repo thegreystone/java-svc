@@ -2,12 +2,12 @@
 This repository contains a set of small examples that can be used to demonstrate various popular Java serviceability technologies.
 
 ## Prerequisites
-The projects require JDK 8 or later, and should all work with JDK 11, unless otherwise specified.
+All projects can build with JDK11, and most will build on JDK 8 as well.
 
 You will also need to have Maven 3.5.3+ installed.
 
 ## Building
-To build all the projects, simply run:
+To build all the projects in one go, ensure that you are using JDK 11, and simply run:
 
 ```bash
 mvn package
