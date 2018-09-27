@@ -9,6 +9,24 @@
   <build>
     <plugins>
       <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>test-jar</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <configuration>
+            <archive>
+              <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+            </archive>
+          </configuration>
+        </configuration>
+      </plugin>
+      <plugin>
         <artifactId>maven-shade-plugin</artifactId>
         <version>3.1.1</version>
         <executions>
@@ -31,17 +49,15 @@
               <shadedPattern>org.openjdk.jmc.internal.org.objectweb.asm.</shadedPattern>
             </relocation>
           </relocations>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>3.1.0</version>
-        <configuration>
-          <configuration>
-            <archive>
-              <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
-            </archive>
-          </configuration>
+          <transformers>
+            <transformer>
+              <resource>MANIFEST.MF</resource>
+            </transformer>
+            <transformer>
+              <resource>META-INF/MANIFEST.MF</resource>
+              <file>${project.build.outputDirectory}/META-INF/MANIFEST.MF</file>
+            </transformer>
+          </transformers>
         </configuration>
       </plugin>
       <plugin>
