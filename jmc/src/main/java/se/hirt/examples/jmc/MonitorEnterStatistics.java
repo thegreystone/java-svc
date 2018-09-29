@@ -37,6 +37,7 @@ import java.io.IOException;
 import org.openjdk.jmc.common.IDisplayable;
 import org.openjdk.jmc.common.item.Aggregators;
 import org.openjdk.jmc.common.item.IItemCollection;
+import org.openjdk.jmc.common.unit.IQuantity;
 import org.openjdk.jmc.flightrecorder.CouldNotLoadRecordingException;
 import org.openjdk.jmc.flightrecorder.JfrAttributes;
 import org.openjdk.jmc.flightrecorder.JfrLoaderToolkit;
@@ -51,13 +52,11 @@ public class MonitorEnterStatistics {
 	public static void main(String[] args) throws IOException, CouldNotLoadRecordingException {
 		IItemCollection events = JfrLoaderToolkit.loadEvents(new File(args[0]));
 		IItemCollection monitorEnterEvents = events.apply(JdkFilters.MONITOR_ENTER);
+		IQuantity eventCount = monitorEnterEvents.getAggregate(Aggregators.count());
+		IQuantity avg = monitorEnterEvents.getAggregate(Aggregators.avg(JfrAttributes.DURATION));
+		IQuantity stddev = monitorEnterEvents.getAggregate(Aggregators.stddev(JfrAttributes.DURATION));
 
-		System.out.println(String.format(
-				"Statistics for the JavaMonitor events in the recording:\n\tNumber of events: %d, average duration: %s, stdddev duration: %s\n",
-				monitorEnterEvents.getAggregate(Aggregators.count()).longValue(),
-				monitorEnterEvents.getAggregate(Aggregators.avg(JfrAttributes.DURATION))
-						.displayUsing(IDisplayable.AUTO),
-				monitorEnterEvents.getAggregate(Aggregators.stddev(JfrAttributes.DURATION))
-						.displayUsing(IDisplayable.AUTO)));
+		System.out.println(String.format("# of events: %d, avg: %s, stdddev: %s\n", eventCount.longValue(),
+				avg.displayUsing(IDisplayable.AUTO), stddev.displayUsing(IDisplayable.AUTO)));
 	}
 }
