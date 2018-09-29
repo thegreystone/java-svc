@@ -1,2 +1,4 @@
 /target/
 *.bak
+/myrecording2.jfr
+/rcrecording.jfr
