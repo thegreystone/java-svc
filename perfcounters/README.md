@@ -1,8 +1,7 @@
 # Perf
 
-The Java Perf API allows attaching to a locally running java process and accessing the internal instrumentation 
-buffer maintained by the Java virtual machine. The API also allows for creating instrumentation objects in the JVM executing these API metods.
-It also includes method for acquiring a platform sepcific high resolution clock for time stamp and interval measurement purposes.
+The Java Perf API allows attaching to a locally running java process and accessing the internal instrumentation buffer maintained by the Java virtual machine. The API also allows for creating instrumentation objects in the JVM executing these API methods.
+It also includes method for acquiring a platform specific high resolution clock for time stamp and interval measurement purposes.
 
 This entire API is internal and restricted, so we are dirty little hobbitses for even looking at it. It can change, or be removed, at any time.
 
