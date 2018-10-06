@@ -14,12 +14,8 @@ To run the example listing the perf counters:
 target/bin/listCounters <pid>
 ```
 
+To run the example for the JMX dynamic MBean, run the following and then connect with a JMX console, for example the one in JDK Mission Control.
+
 ```bash
-java -Xbootclasspath/a:$JAVA_HOME/lib/tools.jar -cp target\classes se.hirt.examples.svc.attach.ListSystemProperties <pid>
+target/bin/runCounterMBeanExample
 ```
-
-A few things worth noting in regards to attach:
-
-* Since JDK 9, you will need to start the JVM with the option
-`-Djdk.attach.allowAttachSelf=true` to allow the process to attach to itself. It may seem a ridiculous thing to allow, but for tools it is often the case that discovery of all processes, and retrieval of information used to identifying all those processes (including the process itself), will be done over attach. Not allowing self-attach may lead to special code paths, making the code and its internal APIs harder to maintain.
-* When used with a SecurityManager, ensure that the `com.sun.tools.attach.AttachPermission` is granted. The permission target name attachVirtualMachine allows the process to attach to another JVM, createAttachProvider allows the creation of attach providers which allows attaching to other JVMs.
