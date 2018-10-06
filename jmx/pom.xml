@@ -56,6 +56,10 @@
 							<mainClass>se.hirt.examples.svc.jmx.MonitorLiveSetSize</mainClass>
 							<id>monitorLiveSetSize</id>
 						</program>
+						<program>
+							<mainClass>se.hirt.examples.svc.jmx.ThreadDump</mainClass>
+							<id>threadDump</id>
+						</program>
 					</programs>
 				</configuration>
 				<executions>
