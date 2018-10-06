@@ -31,7 +31,11 @@
  */
 package se.hirt.examples.svc.attach.util;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.sun.tools.attach.VirtualMachine;
@@ -119,6 +123,24 @@ public final class AttachUtils {
 			vm.detach();
 		} catch (IOException e) {
 			LOGGER.log(Level.INFO, "Failed to detach from VM.", e);
+		}
+	}
+	
+	/**
+	 * Reading a String from a stream.
+	 */
+	public static String readFromStream(InputStream stream) throws IOException {
+		// JDK 8 compatible, cannot use variable resource...
+		try {
+			ByteArrayOutputStream result = new ByteArrayOutputStream();
+			byte[] buffer = new byte[1024];
+			int length;
+			while ((length = stream.read(buffer)) != -1) {
+				result.write(buffer, 0, length);
+			}
+			return result.toString("UTF-8");
+		} finally {
+			stream.close();
 		}
 	}
 }

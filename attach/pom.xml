@@ -48,6 +48,10 @@
 							<mainClass>se.hirt.examples.svc.attach.StartLocalAgent</mainClass>
 							<id>startLocalAgent</id>
 						</program>
+						<program>
+							<mainClass>se.hirt.examples.svc.attach.hotspot.ThreadDump</mainClass>
+							<id>threadDump</id>
+						</program>
 					</programs>
 				</configuration>
 				<executions>
