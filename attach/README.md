@@ -8,7 +8,11 @@ Some of the things that can be done through attach:
 * Load a JVMTI agent (-agentlib/-agentpath)
 * Get the system properties
 * Start the local management agent
-* Start the management agent
+
+Also, if we're being nasty little hobbitses (and downcasting to HotSpotVirtualMachine):
+* Run arbitrary Diagnostic Commands (jcmd)
+* Perform heap dumps
+* Start the JMX over RMI management agent
 
 To run an example on JDK 9+ simply run one of the launchers, for example:
 

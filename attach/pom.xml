@@ -49,6 +49,10 @@
 							<id>startLocalAgent</id>
 						</program>
 						<program>
+							<mainClass>se.hirt.examples.svc.attach.hotspot.HeapDump</mainClass>
+							<id>heapDump</id>
+						</program>
+						<program>
 							<mainClass>se.hirt.examples.svc.attach.hotspot.ThreadDump</mainClass>
 							<id>threadDump</id>
 						</program>
