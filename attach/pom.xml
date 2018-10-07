@@ -53,6 +53,10 @@
 							<id>heapDump</id>
 						</program>
 						<program>
+							<mainClass>se.hirt.examples.svc.attach.hotspot.HeapHistogram</mainClass>
+							<id>heapHistogram</id>
+						</program>
+						<program>
 							<mainClass>se.hirt.examples.svc.attach.hotspot.ThreadDump</mainClass>
 							<id>threadDump</id>
 						</program>
