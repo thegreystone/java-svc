@@ -12,6 +12,7 @@ Some of the things that can be done through attach:
 Also, if we're being nasty little hobbitses (and downcasting to HotSpotVirtualMachine):
 * Run arbitrary Diagnostic Commands (jcmd)
 * Perform heap dumps
+* Get a heap histogram
 * Start the JMX over RMI management agent
 
 To run an example on JDK 9+ simply run one of the launchers, for example:
