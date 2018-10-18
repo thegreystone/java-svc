@@ -73,7 +73,8 @@ public class ExampleTransformer implements ClassFileTransformer {
 				return classfileBuffer;
 			}
 		} else {
-			return classfileBuffer;
+			// Use the byte code as is...
+			return null;
 		}
 	}
 
