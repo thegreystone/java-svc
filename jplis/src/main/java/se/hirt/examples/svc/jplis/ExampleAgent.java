@@ -59,7 +59,7 @@ public class ExampleAgent {
 	 */
 	public static void premain(String agentArguments, Instrumentation instrumentation) {
 		printVersion();
-		getLogger().fine("Starting from premain"); //$NON-NLS-1$
+		getLogger().fine("Starting from premain");
 		initializeAgent(agentArguments, instrumentation);
 	}
 
@@ -73,7 +73,7 @@ public class ExampleAgent {
 	 */
 	public static void agentmain(String agentArguments, Instrumentation instrumentation) {
 		printVersion();
-		getLogger().fine("Starting from agentmain"); //$NON-NLS-1$
+		getLogger().fine("Starting from agentmain");
 		initializeAgent(agentArguments, instrumentation);
 	}
 
