@@ -4,7 +4,7 @@ The JVM Tooling Interface is a native interface to the JVM used to build powerfu
 
 I initially thought I'd add a simple agent here, but didn't for the following reasons:
 
-* Since you would be compiling a native library, the example will still require some additional setup
+* Since you would be compiling a native library, the example will require some additional setup
 * Much of what you'd want to do using JVMTI could be accomplished either using JDI, or another serviceability technology
 * Since it would be a bit more involved to get started, you might as well go with one of the example agents out there
 
