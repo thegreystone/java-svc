@@ -93,7 +93,7 @@ public class RunFibonacci {
 		iterative.shutdown();
 		recursive.shutdown();
 		System.out.println("Shutting down...");
-		System.out.println("Done! Bye!");
+		System.out.println("(This may take a while, depending on which recursive fib number is currently calculated.)");
 	}
 
 	private static long calculateFibonacci(int n, Function<Integer, Long> calculationFunction, String algorithmName) {

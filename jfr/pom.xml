@@ -81,6 +81,16 @@
 						</program>
 						<program>
 							<mainClass>se.hirt.examples.svc.jfr.RunFibonacci</mainClass>
+							<jvmSettings>
+								<extraArguments>
+									<extraArgument>-XX:+UnlockDiagnosticVMOptions</extraArgument>
+									<extraArgument>-XX:+DebugNonSafepoints</extraArgument>
+									<extraArgument>-Xlog:jfr=info</extraArgument>
+									<extraArgument>-XX:+FlightRecorder</extraArgument>
+									<extraArgument>-XX:FlightRecorderOptions=stackdepth=128</extraArgument>
+									<extraArgument>-XX:StartFlightRecording=name=Fibonacci,settings=profile,maxsize=128MB</extraArgument>
+								</extraArguments>
+							</jvmSettings>
 							<id>runFibonacci</id>
 						</program>
 					</programs>
