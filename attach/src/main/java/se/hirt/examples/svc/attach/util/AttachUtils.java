@@ -34,12 +34,12 @@ package se.hirt.examples.svc.attach.util;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import com.sun.tools.attach.VirtualMachine;
+
 import javax.management.remote.JMXServiceURL;
+
+import com.sun.tools.attach.VirtualMachine;
 
 /**
  * Various utility functions.
