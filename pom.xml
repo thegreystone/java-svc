@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright (C) 2018 Marcus Hirt
-                     www.hirt.se
+  Copyright (C) 2018, 2019 Marcus Hirt
+                           www.hirt.se
 
   This software is free:
 
@@ -42,6 +42,7 @@
 		<module>jdi</module>
 		<module>jmx</module>
 		<module>jplis</module>
+		<module>jfr</module>
 		<module>perfcounters</module>
 	</modules>
 	<properties>
